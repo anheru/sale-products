@@ -1,0 +1,21 @@
+*:focus {
+  outline: 0;
+}
+
+body {
+  font-size: 16px;
+  line-height: 1.25;
+  font-family: 'Arial', sans-serif;
+  overflow-x: hidden;
+  box-sizing: border-box;
+  color: #2c2c2c;
+  margin: 0;
+}
+
+
+a,
+button {
+  color: currentColor;
+  cursor: pointer;
+}
+
