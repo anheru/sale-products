@@ -1,4 +1,4 @@
-*:focus {
+/* *:focus {
   outline: 0;
 }
 
@@ -12,10 +12,9 @@ body {
   margin: 0;
 }
 
-
 a,
 button {
   color: currentColor;
   cursor: pointer;
 }
-
+ */
