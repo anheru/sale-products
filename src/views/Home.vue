@@ -1,18 +1,44 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" class="inline"  src="@/assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+  <main>
+    <ul class="flex flex-wrap -mx-4 -my-3">
+      <li
+        v-for="item in items"
+        :key="item.uid"
+        class="w-1/4 px-4 my-3 flex"
+      >
+        <AppItem
+          class="w-full"
+          :name="item.name"
+          :slug="item.slug"
+          :price="item.price"
+          :image="item.imageUrl"
+        />
+      </li>
+    </ul>
+  </main>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+import firebase from 'firebase/app'
+import 'firebase/database'
+import AppItem from '@/components/AppItem'
 
 export default {
-  name: 'home',
-  components: {
-    HelloWorld
+  components: { AppItem },
+
+  data: () => ({
+    items: []
+  }),
+
+  created () {
+    firebase
+      .database()
+      .ref('items')
+      .once('value', (snapchat) => {
+        let items = []
+        snapchat.forEach((s) => { items = items.concat(s.val()) })
+        this.items = items
+      })
   }
 }
 </script>

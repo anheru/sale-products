@@ -1,30 +1,30 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from './views/Home.vue'
+import routes from './routes'
+import firebase from 'firebase/app'
+import 'firebase/auth'
 
 Vue.use(Router)
 
-export default new Router({
+const router = new Router({
   mode: 'history',
   base: process.env.BASE_URL,
-  routes: [
-    {
-      path: '/',
-      name: 'Home',
-      component: Home
-    },
-    {
-      path: '/signin',
-      name: 'Signin',
-      component: () => import('./views/Signin.vue')
-    },
-    {
-      path: '/about',
-      name: 'About',
-      // route level code-splitting
-      // this generates a separate chunk (about.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import(/* webpackChunkName: "about" */ './views/About.vue')
-    }
-  ]
+  routes,
+  scrollBehavior () {
+    return { x: 0, y: 0 }
+  }
 })
+
+router.beforeEach((to, from, next) => {
+  const requiresAuth = to.matched.some(({ meta }) => meta.requiresAuth)
+  if (to.meta.requiresAuth) {
+    if (requiresAuth) {
+      firebase.auth().onAuthStateChanged((user) => {
+        if (!user) next({ name: 'Signin', query: { redirect: to.fullPath } })
+        else next()
+      })
+    } else next()
+  } else next()
+})
+
+export default router

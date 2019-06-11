@@ -4,4 +4,4 @@
 
 ## Link
 
-See https://sale-products.firebaseapp.com/
+See https://sale-products.web.app/
