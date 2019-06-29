@@ -18,10 +18,12 @@ const config = {
   messagingSenderId: process.env.VUE_APP_FIREBASE_SENDER_ID
 }
 
+const app = new Vue({
+  router,
+  store,
+  render: h => h(App)
+})
+
 firebase.initializeApp(config).auth().onAuthStateChanged(() => {
-  new Vue({
-    router,
-    store,
-    render: h => h(App)
-  }).$mount('#app')
+  app.$mount('#app')
 })

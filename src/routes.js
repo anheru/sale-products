@@ -1,20 +1,18 @@
-import Home from './views/Home.vue'
-
 const routes = [
   {
     path: '/',
     name: 'Home',
-    component: Home
+    component: () => import(/* webpackChunkName: "home" */ './views/Home.vue')
   },
   {
     path: '/p/:slug',
     name: 'Product',
-    component: () => import('./views/Product.vue')
+    component: () => import(/* webpackChunkName: "product" */ './views/Product.vue')
   },
   {
     path: '/signin',
     name: 'Signin',
-    component: () => import('./views/Signin.vue')
+    component: () => import(/* webpackChunkName: "signin" */ './views/Signin.vue')
   },
   {
     path: '/dashboard',
@@ -25,15 +23,12 @@ const routes = [
         { name: 'Dashboard' }
       ]
     },
-    component: () => import('./views/Dashboard.vue')
+    component: () => import(/* webpackChunkName: "dashboard" */ './views/Dashboard.vue')
   },
   {
     path: '/404',
     name: 'NotFound',
-    // route level code-splitting
-    // this generates a separate chunk (dashboard.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import('./views/NotFound.vue')
+    component: () => import(/* webpackChunkName: "notfound" */ './views/NotFound.vue')
   },
   {
     path: '*',

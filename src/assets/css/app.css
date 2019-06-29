@@ -13,6 +13,6 @@
 
 /* Tailwind Utilities */
 @import "tailwindcss/utilities";
-
+@import "./fade.css";
 
 /* Custom Utilities */

@@ -19,26 +19,13 @@
 </template>
 
 <script>
-import firebase from 'firebase/app'
-import 'firebase/database'
-import AppItem from '@/components/AppItem'
+import { mapState } from 'vuex'
+const AppItem = () => import('@/components/AppItem')
 
 export default {
   components: { AppItem },
-
-  data: () => ({
-    items: []
-  }),
-
-  created () {
-    firebase
-      .database()
-      .ref('items')
-      .once('value', (snapchat) => {
-        let items = []
-        snapchat.forEach((s) => { items = items.concat(s.val()) })
-        this.items = items
-      })
+  computed: {
+    ...mapState(['items'])
   }
 }
 </script>
