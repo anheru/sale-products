@@ -17,20 +17,50 @@
           <i></i>
         </button>
 
-        <router-link :to="{name: 'Signin'}">
+        <router-link
+          v-if="!loggedIn"
+          :to="{name: 'Signin'}"
+        >
           <span>Sign in</span>
           <i></i>
         </router-link>
+
+        <button
+          v-else
+          @click="logout()"
+        >
+          <span>Log out</span>
+          <i></i>
+        </button>
       </nav>
     </div>
   </header>
 </template>
 
 <script>
+import { mapState, mapActions } from 'vuex'
+
 export default {
   data: () => ({
     isShowMiniCart: false,
     webCart: []
-  })
+  }),
+
+  computed: {
+    ...mapState('auth', ['loggedIn'])
+  },
+
+  methods: {
+    ...mapActions('auth', ['signout']),
+
+    async logout () {
+      try {
+        await this.signout()
+        this.$router.push({ name: 'Signin' })
+      } catch (error) {
+        console.log(error)        
+      }
+    }
+  }
 }
 </script>

@@ -21,7 +21,7 @@ export default {
       loading: s => s.loading
     }),
 
-    ...mapGetters(['getItemBySlug']),
+    ...mapGetters('items', ['getItemBySlug']),
 
     currentItem () {
       return this.getItemBySlug(this.$route.params.slug)

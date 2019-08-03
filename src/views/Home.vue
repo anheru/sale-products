@@ -25,7 +25,9 @@ const AppItem = () => import('@/components/AppItem')
 export default {
   components: { AppItem },
   computed: {
-    ...mapState(['items'])
+    ...mapState({
+      items: s => s.items.all
+    })
   }
 }
 </script>

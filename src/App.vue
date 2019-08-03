@@ -11,6 +11,7 @@
 // const TheFooter = () => import('@/components/TheFooter')
 import firebase from 'firebase/app'
 import 'firebase/database'
+import 'firebase/firestore'
 import TheHeader from '@/components/TheHeader'
 import TheFooter from '@/components/TheFooter'
 import { mapMutations } from 'vuex'
@@ -22,7 +23,12 @@ export default {
   },
 
   methods: {
-    ...mapMutations(['SET_ITEMS', 'SET_LOADING'])
+    ...mapMutations('items',
+      [
+        'SET_ITEMS',
+        'SET_LOADING'
+      ]
+    )
   },
 
   created () {
