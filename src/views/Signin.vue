@@ -31,8 +31,7 @@ export default {
 
         if (redirect) this.$router.push(redirect)
         else this.$router.push({ name: 'Dashboard' })
-      } catch ({message}) {
-        console.log(message)
+      } catch ({ message }) {
       }
     }
   }

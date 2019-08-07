@@ -7,14 +7,9 @@
 </template>
 
 <script>
-// const TheHeader = () => import('@/components/TheHeader')
-// const TheFooter = () => import('@/components/TheFooter')
-import firebase from 'firebase/app'
-import 'firebase/database'
-import 'firebase/firestore'
-import TheHeader from '@/components/TheHeader'
-import TheFooter from '@/components/TheFooter'
-import { mapMutations } from 'vuex'
+import { mapActions } from 'vuex'
+const TheHeader = () => import(/* webpackChunkName: "header" */ '@/components/TheHeader')
+const TheFooter = () => import(/* webpackChunkName: "footer" */ '@/components/TheFooter')
 
 export default {
   components: {
@@ -23,23 +18,11 @@ export default {
   },
 
   methods: {
-    ...mapMutations('items',
-      [
-        'SET_ITEMS',
-        'SET_LOADING'
-      ]
-    )
+    ...mapActions('items', ['loadItems'])
   },
 
-  created () {
-    this.SET_LOADING(true)
-    firebase
-      .database()
-      .ref('items')
-      .once('value', (snapchot) => {
-        this.SET_ITEMS(snapchot.val())
-        this.SET_LOADING(false)
-      })
+  beforeMount () {
+    this.loadItems()
   }
 }
 </script>
