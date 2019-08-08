@@ -22,16 +22,17 @@
           :to="{name: 'Signin'}"
         >
           <span>Sign in</span>
-          <i></i>
         </router-link>
 
-        <button
-          v-else
-          @click="logout()"
-        >
-          <span>Log out</span>
-          <i></i>
-        </button>
+        <template v-else>
+          <router-link :to="{name: 'Dashboard'}" class="mx-3">
+            <span>Admin</span>
+          </router-link>
+
+          <button @click="logout()">
+            <span>Log out</span>
+          </button>
+        </template>
       </nav>
     </div>
   </header>

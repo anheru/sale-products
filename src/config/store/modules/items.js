@@ -1,6 +1,6 @@
 import firebase from 'firebase/app'
 
-function docRef () {
+function colItems () {
   return firebase.firestore().collection('items')
 }
 
@@ -24,24 +24,51 @@ const mutations = {
 const getters = {
   getItemBySlug: (state) => (slug) => {
     return state.all.find(i => i.slug === slug)
+  },
+
+  getItemById: (state) => (id) => {
+    return state.all.find(i => i.id === id)
   }
 }
 
 const actions = {
+  updateItem ({ dispatch }, item) {
+    return new Promise((resolve, reject) => {
+      colItems().doc(item.id || colItems().doc().id).set(item)
+        .then(() => {
+          dispatch('loadItems')
+          resolve()
+        })
+        .catch((error) => {
+          reject(error)
+        })
+    })
+  },
+
+  deleteItem ({ dispatch }, id) {
+    return new Promise((resolve, reject) => {
+      colItems().doc(id).delete()
+        .then(() => {
+          dispatch('loadItems')
+          resolve()
+        })
+        .catch((error) => {
+          reject(error)
+        })
+    })
+  },
+
   loadItems ({ commit }) {
-    docRef().get()
+    colItems().get()
       .then((snapshot) => {
         let items = []
         snapshot.forEach(doc => {
           items = items.concat({
-            id: doc.id,
-            ...doc.data()
+            ...doc.data(),
+            id: doc.id
           })
         })
         commit('SET_ITEMS', items)
-      })
-      .catch((err) => {
-        console.log('Error getting documents', err)
       })
   }
 }

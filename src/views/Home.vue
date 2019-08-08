@@ -20,7 +20,7 @@
 
 <script>
 import { mapState } from 'vuex'
-const AppItem = () => import('@/components/AppItem')
+const AppItem = () => import('@/components/items/AppItem')
 
 export default {
   components: { AppItem },

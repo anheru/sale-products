@@ -9,10 +9,12 @@
 
 
 /* Custom Components */
+@import "./button.css";
 
 
 /* Tailwind Utilities */
 @import "tailwindcss/utilities";
 @import "./fade.css";
+@import "./backgrounds.css";
 
 /* Custom Utilities */
