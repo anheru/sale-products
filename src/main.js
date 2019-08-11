@@ -11,7 +11,9 @@ import 'firebase/auth'
 
 import './registerServiceWorker'
 import '@/assets/css/app.css'
+import Validator from 'validatorjs'
 
+Validator.useLang('es')
 firebase.initializeApp(firebaseConfig)
 
 Vue.config.productionTip = false

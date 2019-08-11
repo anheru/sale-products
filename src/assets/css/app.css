@@ -1,11 +1,13 @@
 /* Tailwind Base */
 /* purgecss start ignore */
 @import "tailwindcss/base";
+@import "./base.css";
 /* purgecss end ignore */
 
 
 /* Tailwind Components */
 @import "tailwindcss/components";
+@import "./form.css";
 
 
 /* Custom Components */

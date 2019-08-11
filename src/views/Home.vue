@@ -1,5 +1,5 @@
 <template>
-  <main>
+  <main class="container">
     <ul class="flex flex-wrap -mx-4 -my-3">
       <li
         v-for="item in items"

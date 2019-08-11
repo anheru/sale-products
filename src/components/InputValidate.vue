@@ -1,17 +1,21 @@
 <template>
   <div>
-    <label v-if="showLabel">{{ $attrs.placeholder }}</label>
+    <label
+      v-if="showLabel"
+      class="form-label"
+    >{{ $attrs.placeholder }}{{ $attrs.hasOwnProperty('required') ? '*' : '' }}</label>
 
     <input
       v-bind="$attrs"
       :value="value"
       @input="updateInput($event.target.value)"
-      class="block px-4 py-2 w-full border border-grey"
+      class="form-input"
     >
 
     <p
-      v-if="error"
-      class="block text-red-100 mt-1 text-sm"
+      v-for="(error, e) in errors"
+      :key="e"
+      class="form-error"
     >{{ error }}</p>
   </div>
 </template>
@@ -24,9 +28,9 @@ export default {
       type: Boolean,
       default: true
     },
-    error: {
-      type: String,
-      default: ''
+    errors: {
+      type: Array,
+      default: () => []
     },
     value: {
       type: [Number, String],

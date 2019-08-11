@@ -1,28 +1,27 @@
 <template>
   <app-modal @hide="$emit('hide')">
-    <form @submit.prevent="submit">
-      <p class="text-2xl font-semibold text-center mb-3">{{ itemId ? 'Editar' : 'Registrar' }} producto</p>
+    <form @submit.prevent="onSubmit">
+      <p class="text-2xl font-semibold text-center mb-3">
+        {{ itemId ? 'Editar' : 'Registrar' }} producto
+      </p>
 
       <input-validate
         v-model="form.name"
-        :rule="rules.name"
-        :error="errors.name"
+        :errors="errors.name"
         type="text"
         placeholder="Nombre del producto"
         class="mb-4"
       />
       <input-validate
         v-model="form.price"
-        :rule="rules.price"
-        :error="errors.price"
+        :errors="errors.price"
         type="number"
         placeholder="Precio"
         class="mb-4"
       />
       <input-validate
         v-model="form.stock"
-        :rule="rules.stock"
-        :error="errors.stock"
+        :errors="errors.stock"
         type="number"
         placeholder="Stock"
         class="mb-4"
@@ -30,7 +29,7 @@
 
       <div class="text-center">
         <button class="btn btn--success mx-2">Guardar</button>
-        <button class="btn btn--danger mx-2">Cancelar</button>
+        <button @click="$emit('hide')" type="button" class="btn btn--danger mx-2">Cancelar</button>
       </div>
     </form>
   </app-modal>
@@ -40,6 +39,7 @@
 import AppModal from '@/components/AppModal'
 import InputValidate from '@/components/InputValidate'
 import { mapGetters, mapActions } from 'vuex'
+import Validator from 'validatorjs'
 
 export default {
   components: {
@@ -65,13 +65,13 @@ export default {
     },
     rules: {
       name: 'required',
-      price: 'required',
-      stock: 'required'
+      price: 'min:1',
+      stock: 'min:0'
     },
     errors: {
-      name: '',
-      price: '',
-      stock: ''
+      name: [],
+      price: [],
+      stock: []
     }
   }),
 
@@ -82,7 +82,16 @@ export default {
   methods: {
     ...mapActions('items', ['updateItem']),
 
-    async submit () {
+    onValidate () {
+      const validation = new Validator({ ...this.form }, { ...this.rules })
+      this.isValid = validation.passes()
+      this.errors = { ...this.errors, ...validation.errors.all() }
+    },
+
+    async onSubmit () {
+      this.onValidate()
+      if (!this.isValid) return
+
       try {
         await this.updateItem({ ...this.form, slug: generateSlug(this.form.name) })
         this.$emit('hide')

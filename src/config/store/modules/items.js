@@ -34,7 +34,10 @@ const getters = {
 const actions = {
   updateItem ({ dispatch }, item) {
     return new Promise((resolve, reject) => {
-      colItems().doc(item.id || colItems().doc().id).set(item)
+      colItems().doc(item.id || colItems().doc().id).set({
+        createdAt: new Date().toTimeString(),
+        ...item
+      })
         .then(() => {
           dispatch('loadItems')
           resolve()

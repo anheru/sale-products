@@ -1,12 +1,12 @@
 <template>
-  <main>
+  <main class="container">
     <section class="">
       <button
-        class="btn btn--info mx-3 mb-3"
+        class="btn btn--info mb-3"
         @click="showModalItem()"
       >Agregar producto</button>
 
-      <ul class="flex flex-wrap">
+      <ul class="flex flex-wrap -mx-3">
         <li
           v-for="item in items"
           :key="item.id"

@@ -1,7 +1,7 @@
 <template>
   <div id="app" class="flex min-h-screen flex-col">
     <TheHeader/>
-    <router-view class="py-12 flex-auto container"/>
+    <router-view class="py-12 flex-auto"/>
     <TheFooter/>
   </div>
 </template>

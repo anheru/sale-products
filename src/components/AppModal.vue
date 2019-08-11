@@ -1,7 +1,7 @@
 <template>
   <transition name="fade">
     <div class="fixed inset-0 bg-black-50 flex items-center justify-center z-50" @click.self="$emit('hide')">
-      <div class="modal-content py-6 px-8 relative bg-white max-w-full md:min-w-64 rounded-lg overflow-hidden">
+      <div class="modal-content py-6 px-8 relative bg-white max-w-xs w-full sm:max-w-sm rounded-lg overflow-hidden">
         <div class="text-right">
           <button
             v-if="showClose"
