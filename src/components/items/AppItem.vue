@@ -6,9 +6,9 @@
     <div class="flex-auto flex items-center py-1">
       <img :src="image" :alt="name">
     </div>
-    <div class="text-center text-white bg-secondary py-2 w-full">
-      <p>{{ name }}</p>
-      <p>{{ price }}</p>
+    <div class="px-4 text-white bg-secondary py-2 w-full">
+      <p class="text-lg">{{ name }}</p>
+      <p class="text-sm">{{ price | currency }}</p>
     </div>
   </router-link>
 </template>

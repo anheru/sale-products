@@ -83,7 +83,7 @@ export default {
     ...mapActions('items', ['updateItem']),
 
     onValidate () {
-      const validation = new Validator({ ...this.form }, { ...this.rules })
+      const validation = new Validator(this.form, this.rules)
       this.isValid = validation.passes()
       this.errors = { ...this.errors, ...validation.errors.all() }
     },

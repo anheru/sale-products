@@ -10,6 +10,7 @@ import 'firebase/firestore'
 import 'firebase/auth'
 
 import './registerServiceWorker'
+import './config/filters'
 import '@/assets/css/app.css'
 import Validator from 'validatorjs'
 

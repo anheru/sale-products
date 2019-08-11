@@ -32,7 +32,7 @@ const getters = {
 }
 
 const actions = {
-  updateItem ({ dispatch }, item) {
+  updateItem ({ dispatch, commit }, item) {
     return new Promise((resolve, reject) => {
       colItems().doc(item.id || colItems().doc().id).set({
         createdAt: new Date().toTimeString(),
@@ -62,6 +62,8 @@ const actions = {
   },
 
   loadItems ({ commit }) {
+    commit('SET_LOADING', true)
+
     colItems().get()
       .then((snapshot) => {
         let items = []
@@ -72,6 +74,9 @@ const actions = {
           })
         })
         commit('SET_ITEMS', items)
+      })
+      .finally(() => {
+        commit('SET_LOADING', false)
       })
   }
 }
