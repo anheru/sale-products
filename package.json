@@ -2,6 +2,8 @@
   "name": "sale-products",
   "version": "0.1.0",
   "private": true,
+  "author": "Angel M <angel.m4d@gmail.com>",
+  "homepage": "https://sale-products.web.app/",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
