@@ -4,7 +4,9 @@
       <button
         class="btn btn--info mb-3"
         @click="showModalItem()"
-      >Agregar producto</button>
+      >
+        Agregar producto
+      </button>
 
       <ul class="flex flex-wrap -mx-3">
         <li
@@ -32,14 +34,21 @@
       @hide="isShowModalDelete = false"
     >
       <div class="text-center">
-        <p class="text-2xl font-semibold mb-4 text-grey-darker">¿Está seguro de eliminar el producto?</p>
+        <p class="text-2xl font-semibold mb-4 text-grey-darker">
+          ¿Está seguro de eliminar el producto?
+        </p>
         <button
           class="btn btn--info mx-2"
-          @click="submit">Confirmar</button>
+          @click="submit"
+        >
+          Confirmar
+        </button>
         <button
-          @click="isShowModalDelete = false"
           class="btn btn--danger mx-2"
-        >Cancelar</button>
+          @click="isShowModalDelete = false"
+        >
+          Cancelar
+        </button>
       </div>
     </app-modal>
   </main>

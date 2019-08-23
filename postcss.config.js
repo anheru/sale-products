@@ -15,9 +15,9 @@ module.exports = {
     require('tailwindcss'),
     require('postcss-preset-env')({
       features: {
-        "nesting-rules": true,
-        "custom-properties": true,
-        "color-mod-function": true
+        'nesting-rules': true,
+        'custom-properties': true,
+        'color-mod-function': true
       }
     }),
     ...process.env.NODE_ENV === 'production'

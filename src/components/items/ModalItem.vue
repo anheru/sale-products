@@ -28,8 +28,16 @@
       />
 
       <div class="text-center">
-        <button class="btn btn--success mx-2">Guardar</button>
-        <button @click="$emit('hide')" type="button" class="btn btn--danger mx-2">Cancelar</button>
+        <button class="btn btn--success mx-2">
+          Guardar
+        </button>
+        <button
+          type="button"
+          class="btn btn--danger mx-2"
+          @click="$emit('hide')"
+        >
+          Cancelar
+        </button>
       </div>
     </form>
   </app-modal>
@@ -79,6 +87,10 @@ export default {
     ...mapGetters('items', ['getItemById'])
   },
 
+  created () {
+    if (this.itemId) this.form = { ...this.getItemById(this.itemId) }
+  },
+
   methods: {
     ...mapActions('items', ['updateItem']),
 
@@ -98,10 +110,6 @@ export default {
       } catch (error) {
       }
     }
-  },
-
-  created () {
-    if (this.itemId) this.form = { ...this.getItemById(this.itemId) }
   }
 }
 

@@ -1,7 +1,10 @@
 <template>
   <div class="flex border-2 border-gray-400 py-2 items-center">
     <div class="w-1/3 px-3">
-      <img :src="item.imageUrl" :alt="item.name">
+      <img
+        :src="item.imageUrl"
+        :alt="item.name"
+      >
     </div>
 
     <div class="flex-auto pr-3">
@@ -19,16 +22,20 @@
       </p>
 
       <button
-        @click="$emit('edit', item.id)"
         title="Editar"
         class="btn btn--info mr-3"
-      >editar</button>
+        @click="$emit('edit', item.id)"
+      >
+        editar
+      </button>
 
       <button
-        @click="$emit('delete', item.id)"
         title="Eliminar"
         class="btn btn--danger"
-      >eliminar</button>
+        @click="$emit('delete', item.id)"
+      >
+        eliminar
+      </button>
     </div>
   </div>
 </template>

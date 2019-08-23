@@ -8,15 +8,17 @@
     <input
       v-bind="$attrs"
       :value="value"
-      @input="updateInput($event.target.value)"
       class="form-input"
+      @input="updateInput($event.target.value)"
     >
 
     <p
       v-for="(error, e) in errors"
       :key="e"
       class="form-error"
-    >{{ error }}</p>
+    >
+      {{ error }}
+    </p>
   </div>
 </template>
 

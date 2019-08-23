@@ -1,18 +1,28 @@
 <template>
   <main class="container flex items-center">
-    <article v-if="currentItem" class="md:flex w-full">
+    <article
+      v-if="currentItem"
+      class="md:flex w-full"
+    >
       <div class="w-full md:w-1/2">
-        <img class="lg:w-3/5 mx-auto" :src="currentItem.imageUrl" :alt="currentItem.name">
+        <img
+          class="lg:w-3/5 mx-auto"
+          :src="currentItem.imageUrl"
+          :alt="currentItem.name"
+        >
       </div>
 
       <div class="w-full md:w-1/2">
-        <p class="text-3xl text-secondary font-semibold">{{ currentItem.name }}</p>
-        <p class="text-xl">Precio: {{ currentItem.price | currency }}</p>
+        <p class="text-3xl text-secondary font-semibold">
+          {{ currentItem.name }}
+        </p>
+        <p class="text-xl">
+          Precio: {{ currentItem.price | currency }}
+        </p>
       </div>
     </article>
-    <app-loading v-else/>
+    <app-loading v-else />
   </main>
-
 </template>
 
 <script>

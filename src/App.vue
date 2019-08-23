@@ -1,8 +1,11 @@
 <template>
-  <div id="app" class="flex min-h-screen flex-col">
-    <TheHeader/>
-    <router-view class="py-12 flex-auto"/>
-    <TheFooter/>
+  <div
+    id="app"
+    class="flex min-h-screen flex-col"
+  >
+    <TheHeader />
+    <router-view class="py-12 flex-auto" />
+    <TheFooter />
   </div>
 </template>
 
@@ -17,12 +20,12 @@ export default {
     TheFooter
   },
 
-  methods: {
-    ...mapActions('items', ['loadItems'])
-  },
-
   beforeMount () {
     this.loadItems()
+  },
+
+  methods: {
+    ...mapActions('items', ['loadItems'])
   }
 }
 </script>

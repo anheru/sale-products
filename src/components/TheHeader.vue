@@ -2,7 +2,10 @@
   <header class="bg-primary py-3">
     <div class="container flex items-center justify-between">
       <p>
-        <router-link :to="{name: 'Home'}" class="text-3xl font-semibold">
+        <router-link
+          :to="{name: 'Home'}"
+          class="text-3xl font-semibold"
+        >
           <span class="hidden md:block">Sale Products</span>
           <span class="md:hidden">SP</span>
         </router-link>
@@ -10,11 +13,11 @@
 
       <nav>
         <button
-          @click="isShowMiniCart = true"
           title="Realizar Pedido"
           :data-count="webCart.length"
+          @click="isShowMiniCart = true"
         >
-          <i></i>
+          <i />
         </button>
 
         <router-link
@@ -25,8 +28,11 @@
         </router-link>
 
         <template v-else>
-          <router-link :to="{name: 'Dashboard'}" class="mx-3">
-            <span>Admin</span>
+          <router-link
+            :to="{name: 'Dashboard'}"
+            class="mx-3"
+          >
+            <span>Dashboard</span>
           </router-link>
 
           <button @click="logout()">
